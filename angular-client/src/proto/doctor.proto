@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package grpc;
+
+import "google/protobuf/empty.proto";
+
+// For java only
+option java_multiple_files = true;
+option java_package = "dev.vietnq.grpc";
+
+service DoctorService {
+  rpc getAllDoctor(google.protobuf.Empty) returns (stream Doctor) {};
+  rpc createDoctor(Doctor) returns (stream Doctor) {};
+}
+
+message Doctor {
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+}
