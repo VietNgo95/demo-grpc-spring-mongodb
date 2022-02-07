@@ -11,9 +11,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>dev.vietnq</groupId>
-    <artifactId>DemoSpringMongoDB</artifactId>
+    <artifactId>spring-mongodb-service</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>demo-spring-mongodb</name>
+    <name>spring-mongodb-service</name>
 
     <properties>
         <java.version>1.8</java.version>
