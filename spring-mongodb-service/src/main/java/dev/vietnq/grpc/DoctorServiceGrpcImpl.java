@@ -40,7 +40,6 @@ public class DoctorServiceGrpcImpl extends DoctorServiceGrpc.DoctorServiceImplBa
     private void streamAllDoctor(StreamObserver<Doctor> responseObserver) {
         List<DoctorDocument> doctors = doctorService.readAll();
         for (DoctorDocument doctor : doctors) {
-            logger.log(Level.INFO, "debug doctor : {0}", doctor.toString());
             responseObserver.onNext(Doctor.newBuilder()
                     .setId(doctor.getId())
                     .setName(doctor.getName())
