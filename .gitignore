@@ -25,4 +25,3 @@ hs_err_pid*
 
 # Project
 /.idea/
-/grpc-interface/.idea/
