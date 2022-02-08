@@ -5,7 +5,7 @@ export interface Doctor {
   age: number
 }
 
-export const doctors = [
+export const samples = [
   {
     id: 'id1',
     position: 1,

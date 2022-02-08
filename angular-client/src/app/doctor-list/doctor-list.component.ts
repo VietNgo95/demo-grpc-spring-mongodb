@@ -1,7 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Doctor, doctors } from '../doctors';
+import { Doctor, samples } from '../doctors';
 
 @Component({
   selector: 'app-doctor-list',
@@ -11,7 +11,7 @@ import { Doctor, doctors } from '../doctors';
 export class DoctorListComponent {
 
   displayedColumns: string[] = ['select', 'position', 'name', 'age'];
-  dataSource = new MatTableDataSource<Doctor>(doctors);
+  dataSource = new MatTableDataSource<Doctor>(samples);
   selection = new SelectionModel<Doctor>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
