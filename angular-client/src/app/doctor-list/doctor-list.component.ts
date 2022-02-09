@@ -2,6 +2,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Doctor, samples } from '../doctors';
+import { DoctorServiceClient } from 'src/grpc-web/doctor/doctor_pb_service';
 
 @Component({
   selector: 'app-doctor-list',
