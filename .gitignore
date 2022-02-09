@@ -1,6 +1,5 @@
 # Compiled class file
 *.class
-/grpc-interface/target/
 
 # Log file
 *.log
@@ -25,7 +24,7 @@
 hs_err_pid*
 
 # Project files
-/.idea/
-/grpc-interface/.idea/
+**/.idea/
+**/target/
 /angular-client/node_modules/
 /angular-client/.angular/

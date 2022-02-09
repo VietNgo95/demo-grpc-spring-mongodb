@@ -1,4 +1,4 @@
-export interface Doctor {
+export interface DoctorModel {
   id: string;
   position: number;
   name: string;
