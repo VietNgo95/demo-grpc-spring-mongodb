@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EnvService } from './services/env.service';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
+  constructor(public env: EnvService) { }
 }

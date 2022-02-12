@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DoctorModel } from 'src/model/doctor';
-import { Empty } from "google-protobuf/google/protobuf/empty_pb";
-import { Doctor } from 'src/grpc-web/doctor/doctor_pb';
-import { DoctorService } from 'src/grpc-web/doctor/doctor_pb_service';
-import { grpc } from '@improbable-eng/grpc-web';
+import { DoctorApiService } from '../services/doctorApi.service';
+import { EnvService } from '../services/env.service';
 @Component({
   selector: 'app-doctor-list',
   templateUrl: './doctor-list.component.html',
@@ -14,36 +12,12 @@ import { grpc } from '@improbable-eng/grpc-web';
 export class DoctorListComponent implements OnInit {
 
   displayedColumns: string[] = ['select', 'position', 'name', 'age'];
-  doctors: DoctorModel[] = new Array<DoctorModel>();
   dataSource = new MatTableDataSource<DoctorModel>();
   selection = new SelectionModel<DoctorModel>(true, []);
 
   ngOnInit(): void {
-    const getAllDoctorRequest = new Empty();
-    const proxyPort = '8090';
-    let position = 1;
-    grpc.invoke(DoctorService.getAllDoctor, {
-      request: getAllDoctorRequest,
-      host: 'http://localhost:' + proxyPort,
-      onMessage: (message: Doctor) => {
-        let doctor = message.toObject() as Doctor.AsObject;
-        this.doctors.push(
-          <DoctorModel>({
-            id: doctor.id,
-            position: position++,
-            name: doctor.name,
-            age: doctor.age
-          }));
-      },
-      onEnd: (code: grpc.Code, msg: string | undefined, trailers: grpc.Metadata) => {
-        if (code === grpc.Code.OK) {
-          this.dataSource.data = this.doctors;
-          console.log("All doctors streamed!");
-        } else {
-          console.log(code, msg, trailers);
-        }
-      }
-    });
+    const docterApiService: DoctorApiService = new DoctorApiService(new EnvService());
+    docterApiService.getAllDoctors(this.dataSource);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  springgrpc:
+    image: springgrpc
+    build: 
+      context: ./spring-mongodb-service
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+      - 9090:9090
+  envoy:
+      image: envoy
+      build:
+        context: ./envoy
+        dockerfile: Dockerfile
+      ports:
+        - 8090:8090
+  angularioexample:
+    image: angularioexample
+    build:
+      context: ./angular-client
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 4200:4200
