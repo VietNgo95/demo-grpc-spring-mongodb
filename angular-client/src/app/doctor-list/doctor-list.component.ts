@@ -14,10 +14,15 @@ export class DoctorListComponent implements OnInit {
   dataSource = new MatTableDataSource<DoctorModel>();
   selection = new SelectionModel<DoctorModel>(true, []);
 
-  constructor(private apiServide: DoctorApiService) { }
+  constructor(private apiService: DoctorApiService) { }
 
   ngOnInit(): void {
-    this.apiServide.getAllDoctors(this.dataSource);
+    this.apiService.doctors$.subscribe(data => {
+      this.dataSource.data = data;
+      this.selection.clear();
+    })
+    this.apiService.selectedDoctors$ = this.selection.selected;
+    this.apiService.getAllDoctors();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -31,9 +36,16 @@ export class DoctorListComponent implements OnInit {
   masterToggle() {
     if (this.isAllSelected()) {
       this.selection.clear();
-      return;
+    } else {
+      this.selection.select(...this.dataSource.data);
     }
-    this.selection.select(...this.dataSource.data);
+    this.apiService.selectedDoctors$ = this.selection.selected;
+  }
+
+  /** Toggle selected row. */
+  rowToggle(row: DoctorModel) {
+    this.selection.toggle(row);
+    this.apiService.selectedDoctors$ = this.selection.selected;
   }
 
   /** The label for the checkbox on the passed row */

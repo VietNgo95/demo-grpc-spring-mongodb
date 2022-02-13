@@ -8,6 +8,10 @@
     // Envoy url
     window.__env.envoyHost = self.location.hostname;
     window.__env.envoyPort = '8090';
+    
+    // Spring server url
+    window.__env.springHost = self.location.hostname;
+    window.__env.springPort = '8080';
 
     // Whether or not to enable debug mode
     window.__env.enableDebug = true;
