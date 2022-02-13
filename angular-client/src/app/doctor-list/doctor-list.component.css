@@ -1,8 +1,27 @@
-/* Table */
-table {
+.basic-container {
+    padding: 20px;
     width: 42%;
+    min-width: 500px;
+    max-height: 300px;
+    overflow: auto;
 }
 
-.basic-container {
-    padding: 30px;
+.mat-table {
+    width: 100%;
+}
+
+.mat-cell,
+.mat-header-cell {
+    word-wrap: initial;
+    display: table-cell;
+    padding: 0px 10px;
+    line-break: unset;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.mat-row,
+.mat-header-row {
+    display: table-row;
 }

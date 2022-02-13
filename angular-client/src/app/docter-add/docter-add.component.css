@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.basic-container {
+    padding: 20px;
+}
+
+.mat-form-field {
+    padding-top: 16px;
+    padding-right: 24px;
+}

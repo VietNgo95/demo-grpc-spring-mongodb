@@ -12,15 +12,6 @@ body {
   margin: 0;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-router-outlet + *  {
-  padding: 0 8px;
-}
-
 /* Text */
 
 h1 {
@@ -50,15 +41,15 @@ a {
 /* Input */
 
 input {
-  font-size: 14px;
+  font-size: 12px;
   border-radius: 2px;
   padding: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 6px;
   border: 1px solid #BDBDBD;
 }
 
 label {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   margin-bottom: 4px;
   display: block;
@@ -69,6 +60,7 @@ label {
 .button, button {
   display: inline-flex;
   align-items: center;
+  margin: 8px;
   padding: 8px 16px;
   border-radius: 2px;
   font-size: 14px;
@@ -79,6 +71,7 @@ label {
 }
 
 .button:hover, button:hover {
+  background-color: #32ac5b;
   opacity: 0.8;
   font-weight: normal;
 }
@@ -86,16 +79,4 @@ label {
 .button:disabled, button:disabled {
   opacity: 0.5;
   cursor: auto;
-}
-
-/* Fancy Button */
-
-.fancy-button {
-  background-color: white;
-  color: #1976d2;
-}
-
-.fancy-button i.material-icons {
-  color: #1976d2;
-  padding-right: 4px;
 }
