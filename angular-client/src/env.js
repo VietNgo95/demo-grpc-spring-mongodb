@@ -1,5 +1,5 @@
 /*
- * Dynamicly config enviroment variable with out reload app
+ * Dynamicly config enviroment variable with out rebuilding project
  * Reference: https://www.jvandemo.com/how-to-use-environment-variables-to-configure-your-angular-application-without-a-rebuild/
  */
 (function (window) {

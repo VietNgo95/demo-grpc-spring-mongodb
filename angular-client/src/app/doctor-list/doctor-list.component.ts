@@ -3,7 +3,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DoctorModel } from 'src/model/doctor';
 import { DoctorApiService } from '../services/doctorApi.service';
-import { EnvService } from '../services/env.service';
 @Component({
   selector: 'app-doctor-list',
   templateUrl: './doctor-list.component.html',
@@ -15,9 +14,10 @@ export class DoctorListComponent implements OnInit {
   dataSource = new MatTableDataSource<DoctorModel>();
   selection = new SelectionModel<DoctorModel>(true, []);
 
+  constructor(private apiServide: DoctorApiService) { }
+
   ngOnInit(): void {
-    const docterApiService: DoctorApiService = new DoctorApiService(new EnvService());
-    docterApiService.getAllDoctors(this.dataSource);
+    this.apiServide.getAllDoctors(this.dataSource);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

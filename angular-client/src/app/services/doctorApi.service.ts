@@ -12,13 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class DoctorApiService {
 
-  private proxyHost: string;
-  private proxyPort: string;
-
-  constructor(env: EnvService) {
-    this.proxyHost = env.envoyHost;
-    this.proxyPort = env.envoyPort;
-  }
+  constructor(private env: EnvService) { }
 
   getAllDoctors(dataSource: MatTableDataSource<DoctorModel>): Array<DoctorModel> {
     const getAllDoctorRequest = new Empty();
@@ -26,7 +20,7 @@ export class DoctorApiService {
     let doctors = new Array<DoctorModel>();
     grpc.invoke(DoctorService.getAllDoctor, {
       request: getAllDoctorRequest,
-      host: `http://${this.proxyHost}:${this.proxyPort}`,
+      host: `http://${this.env.envoyHost}:${this.env.envoyPort}`,
       onMessage: (message: Doctor) => {
         let doctor = message.toObject() as Doctor.AsObject;
         doctors.push(
