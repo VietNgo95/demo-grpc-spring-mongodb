@@ -30,7 +30,9 @@
               "src/theme.scss",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/env.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -98,7 +100,9 @@
               "src/theme.scss",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/env.js"
+            ]
           }
         },
         "e2e": {

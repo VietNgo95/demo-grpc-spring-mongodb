@@ -1,0 +1,1 @@
+!function(e){e.__env=e.__env||{},e.__env.envoyHost=self.location.hostname,e.__env.envoyPort="8090",e.__env.springHost="mighty-caverns-43721.herokuapp.com",e.__env.springPort="",e.__env.enableDebug=!0}(this);
