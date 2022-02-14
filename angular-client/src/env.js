@@ -11,7 +11,7 @@
     
     // Spring server url
     window.__env.springHost = self.location.hostname;
-    window.__env.springPort = '8080';
+    window.__env.springPort = ''; // Unset to deploy to server with DNS
 
     // Whether or not to enable debug mode
     window.__env.enableDebug = true;

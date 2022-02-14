@@ -12,14 +12,18 @@ export class DoctorApiService {
   private doctorSubject = new BehaviorSubject([]);
   readonly doctors$ = this.doctorSubject.asObservable();
   public selectedDoctors$ = new Array<DoctorModel>();
+  private url = `http://${this.env.springHost}:${this.env.springPort}/rest/doctors/`;
 
-  constructor(private env: EnvService, private http: HttpClient) { }
+  constructor(private env: EnvService, private http: HttpClient) {
+    if(!this.env.springPort) {
+      this.url = `http://${this.env.springHost}/rest/doctors/`;
+    }
+  }
 
   getAllDoctors(): Array<DoctorModel> {
-    const url = `http://${this.env.springHost}:${this.env.springPort}/rest/doctors/`;
     let position = 1;
     let doctors = new Array<DoctorModel>();
-    this.http.get<Array<DoctorModel>>(url).forEach(response => {
+    this.http.get<Array<DoctorModel>>(this.url).forEach(response => {
       response.forEach(doctor => {
         doctors.push(
           <DoctorModel>({
@@ -35,25 +39,23 @@ export class DoctorApiService {
   }
 
   addDoctor(newDoctor: DoctorModel): void {
-    const url = `http://${this.env.springHost}:${this.env.springPort}/rest/doctors/`;
     const createDoctorRequest = <DoctorModel>({
       name: newDoctor.name,
       age: newDoctor.age
     });
 
-    this.http.post<DoctorModel>(url, createDoctorRequest).subscribe(doctor => {
+    this.http.post<DoctorModel>(this.url, createDoctorRequest).subscribe(doctor => {
         this.getAllDoctors();
     });
   }
 
   deleteDoctors() {
-    const url = `http://${this.env.springHost}:${this.env.springPort}/rest/doctors/`;
     const headerDict = {};
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
     };
     for (let deleteDoctor of this.selectedDoctors$) {
-      this.http.delete(url.concat(deleteDoctor.id), requestOptions).subscribe({
+      this.http.delete(this.url.concat(deleteDoctor.id), requestOptions).subscribe({
         next: data => {
           console.log(`Deleted doctor: name=${deleteDoctor.name}, age=${deleteDoctor.age}`);
           this.getAllDoctors();
