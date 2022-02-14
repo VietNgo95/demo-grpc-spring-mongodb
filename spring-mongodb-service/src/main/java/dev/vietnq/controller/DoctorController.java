@@ -25,11 +25,13 @@ public class DoctorController {
         return doctorService.readAll();
     }
 
+    @CrossOrigin
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public DoctorDocument updateDoctor(@RequestBody DoctorDocument doctorDocument) {
         return doctorService.update(doctorDocument);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public Map<String, String> deleteDoctor(@PathVariable String id) {
         return doctorService.delete(id);

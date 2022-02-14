@@ -25,3 +25,7 @@
 .mat-header-row {
     display: table-row;
 }
+
+button {
+    margin: 20px;
+}

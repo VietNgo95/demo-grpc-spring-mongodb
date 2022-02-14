@@ -41,7 +41,7 @@ export class DoctorApiService {
           this.doctorSubject.next(Object.assign([], doctors));
           console.log("All doctors streamed!");
         } else {
-          console.log(code, msg, trailers);
+          console.error(code, msg, trailers);
         }
       }
     });
@@ -75,7 +75,7 @@ export class DoctorApiService {
           this.doctorSubject.next(Object.assign([], doctors));
           console.log("New doctor added!");
         } else {
-          console.log(code, msg, trailers);
+          console.error(code, msg, trailers);
         }
       }
     });
@@ -83,20 +83,15 @@ export class DoctorApiService {
 
   deleteDoctors() {
     const url = `http://${this.env.springHost}:${this.env.springPort}/rest/doctors/`;
-    grpc.CrossBrowserHttpTransport
-    const headerDict = {
-      // 'Access-Control-Allow-Origin': self.location.origin,
-      // 'Access-Control-Allow-Credentials': 'true',
-      // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, DELETE',
-      // 'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-    };
+    const headerDict = {};
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
     };
     for (let deleteDoctor of this.selectedDoctors$) {
       this.http.delete(url.concat(deleteDoctor.id), requestOptions).subscribe({
         next: data => {
-          console.log(`Deleted ${deleteDoctor}`);
+          console.log(`Deleted doctor: name=${deleteDoctor.name}, age=${deleteDoctor.age}`);
+          this.getAllDoctors();
         },
         error: error => {
           console.error('There was an error!', error);

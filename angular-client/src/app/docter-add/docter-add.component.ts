@@ -13,7 +13,7 @@ export class DocterAddComponent implements OnInit {
   public addDoctorForm: FormGroup;
   private newDoctor: DoctorModel | undefined;
 
-  constructor(private formBuilder: FormBuilder, private apiServide: DoctorApiService) {
+  constructor(private formBuilder: FormBuilder, private apiService: DoctorApiService) {
     this.addDoctorForm = this.formBuilder.group({
       name: ['', Validators.required],
       age: ['']
@@ -37,15 +37,7 @@ export class DocterAddComponent implements OnInit {
         age: this.addDoctorForm.get('age')?.value
       })
       console.log(this.newDoctor);
-      this.apiServide.addDoctor(this.newDoctor);
+      this.apiService.addDoctor(this.newDoctor);
     }
-  }
-
-  clickDelete() {
-    /** REST call block by CORS policy: Response to preflight request 
-     * doesn't pass access control check: 
-     * No 'Access-Control-Allow-Origin' header is present on the requested resource.
-     */
-    this.apiServide.deleteDoctors();
   }
 }
