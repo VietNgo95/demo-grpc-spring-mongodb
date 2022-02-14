@@ -16,7 +16,7 @@ export class DoctorApiService {
 
   constructor(private env: EnvService, private http: HttpClient) {
     if(!this.env.springPort) {
-      this.url = `http://${this.env.springHost}/rest/doctors/`;
+      this.url = `https://${this.env.springHost}/rest/doctors/`;
     }
   }
 
