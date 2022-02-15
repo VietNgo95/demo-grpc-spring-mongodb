@@ -1,10 +1,11 @@
 # gRPC with Spring and MongoDB
-Personal project to demonstrate uses of spring and gRPC.
+Personal project to demonstrate uses of spring and gRPC. <br/>
+Demo with REST: https://vietngo95.github.io/demo-grpc-spring-mongodb/
 
 ## Database setup
-This project connect to the free tier M0 of [MongoDB Atlas](https://www.mongodb.com/atlas/database).
-You can use any others DBMS that supports Spring Boot.
-Config the connection string in `application.properties` file, example in this project:
+This project connect to the free tier M0 of [MongoDB Atlas](https://www.mongodb.com/atlas/database). <br/>
+You can use any others DBMS that supports Spring Boot. <br/>
+Config the connection string in `application.properties` file, example in this project: <br/>
 `spring.data.mongodb.uri=mongodb+srv://<username>:<pwd>@<cluster>.mongodb.net`
 
 Learn more about Spring with MongoDB [here](https://www.mongodb.com/compatibility/spring-boot).
@@ -14,21 +15,20 @@ Learn more about Spring with MongoDB [here](https://www.mongodb.com/compatibilit
  - Java 8 and above
  - Maven
 ### 1. Build grpc-interface
-After change the connection string, build this project with `mvn install`
+After change the connection string, build this project with `mvn install`. <br/>
 This will generate any proto files to java code and export a jar file use in the spring-mongodb-service project.
 
 ### 2. Build spring-mongodb-service
-Build with `mvn install`
-Optionaly, after build you can check if it can run with `mvn spring-boot run`
-
-Check if there if there is any builded jar in `/target/` folder.
+Build with `mvn install`. <br/>
+Check if there is any builded jar in `/target/` folder then it can be use to deploy backend service. <br/>
+Optionaly, after build you can check if it can run with `mvn spring-boot run`.
 
 ## Local deployment
 ### Prerequisite
 - Install [Docker](https://docs.docker.com/engine/install/)
 
 ### Deploy steps
-Step 1: Move to project folder with cmd
+Step 1: Move to project folder with cmd.
 
 Step 2: Run compose command to build image and run 3 projects:
 ``` cmd
